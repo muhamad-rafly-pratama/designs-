@@ -1,42 +1,82 @@
-let currentIndex = 0;
-const images = document.querySelectorAll('.B img');
-const totalImages = images.length;
+// Slider untuk section B
+function initSectionBSlider() {
+    let currentIndexB = 0;
+    const imagesB = document.querySelectorAll('.B img');
+    const totalImagesB = imagesB.length;
 
-function showNextImage() {
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % totalImages;
-    images[currentIndex].classList.add('active');
+    function showNextImageB() {
+        imagesB[currentIndexB].classList.remove('active');
+        currentIndexB = (currentIndexB + 1) % totalImagesB;
+        imagesB[currentIndexB].classList.add('active');
+    }
+
+    function prevImageB() {
+        imagesB[currentIndexB].classList.remove('active');
+        currentIndexB = (currentIndexB - 1 + totalImagesB) % totalImagesB;
+        imagesB[currentIndexB].classList.add('active');
+    }
+
+    // Ekspos fungsi ke global scope jika diperlukan
+    window.prevImage = prevImageB;
+    window.nextImage = showNextImageB;
+
+    // Inisialisasi
+    if(imagesB.length > 0) {
+        imagesB[0].classList.add('active');
+        setInterval(showNextImageB, 3000);
+    }
 }
 
-function prevImage() {
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-    images[currentIndex].classList.add('active');
-}
+// Slider untuk section C dengan encapsulation
+function initSectionCSlider() {
+    const postersC = document.querySelectorAll('.C .Poster');
 
-function nextImage() {
-    showNextImage();
-}
+    postersC.forEach(poster => {
+        let currentIndexC = 0;
+        const imagesC = poster.querySelectorAll('.poster-img');
+        const categoryText = poster.querySelector('.category-text');
+        let intervalC;
 
-// Inisialisasi gambar pertama
-images[currentIndex].classList.add('active');
+        function updateCategoryText() {
+            const activeImage = poster.querySelector('.poster-img.active');
+            categoryText.textContent = activeImage.dataset.category || '';
+        }
 
-// Otomatis geser gambar setiap 3 detik
-setInterval(showNextImage, 3000);
+        function showNextImageC() {
+            imagesC[currentIndexC].classList.remove('active');
+            currentIndexC = (currentIndexC + 1) % imagesC.length;
+            imagesC[currentIndexC].classList.add('active');
+            updateCategoryText();
+        }
 
-// Javascript untuk mengatur pergantian gambar 
-function slideImages() {
-    const posters = document.querySelectorAll('.C .Poster');
+        function startIntervalC() {
+            intervalC = setInterval(showNextImageC, 3000);
+        }
 
-    posters.forEach(poster => {
-        const imageContainer = poster.querySelector('.image-container');
-        let currentPosition = 0;
+        // Initialize
+        if(imagesC.length > 0) {
+            imagesC[0].classList.add('active');
+            updateCategoryText();
+            startIntervalC();
+            
+            // Hover effects
+            poster.addEventListener('mouseenter', () => {
+                clearInterval(intervalC);
+                poster.querySelector('.poster-img.active').style.transform = 'scale(1.1)';
+                categoryText.style.opacity = '1';
+            });
 
-        setInterval(() => {
-            currentPosition = (currentPosition - 33.33) % 100;
-            imageContainer.style.transform = `translateX(${currentPosition}%)`;
-        }, 3000);
+            poster.addEventListener('mouseleave', () => {
+                startIntervalC();
+                poster.querySelector('.poster-img.active').style.transform = 'scale(1)';
+                categoryText.style.opacity = '0';
+            });
+        }
     });
 }
 
-window.onload = slideImages;
+// Inisialisasi semua slider
+document.addEventListener('DOMContentLoaded', () => {
+    initSectionBSlider();
+    initSectionCSlider();
+});

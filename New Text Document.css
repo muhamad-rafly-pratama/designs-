@@ -36,7 +36,7 @@ body{  background-color: aqua;
     max-width: 100%; /* Gambar tidak melebihi lebar container */
     max-height: 100%;/* Gambar tidak melebihi tinggi container */
     object-fit: contain/* Pastikan gambar menutupi area tanpa distorsi */
-    transition: opacity 1s ease-in-out;
+    transition: transform 1s ease-in-out;
     opacity: 0;
 }
 
@@ -75,7 +75,7 @@ body{  background-color: aqua;
 }
 
 .C .Poster {
-    background-color: antiquewhite;
+    border: 1px antiquewhite;
     width: 40%;
     height: 150px;
     text-align: center;
@@ -86,16 +86,64 @@ body{  background-color: aqua;
     position: relative;
 }
 
-.C .Poster .image-container {
-    display: flex;
-    width: 300%; /* Lebar container 3x lipat untuk menampung 3 gambar */
+.C .category-text {
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Agar tidak mengganggu hover */
+}
+
+.C .Poster img.Poster-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    transition: transform 1s ease-in-out; /* Efek transisi untuk slide */
+    object-fit: cover;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1); /* Status normal */
+}
+
+.C .Poster img.poster-img.active {
+    opacity: 1;
+    transform: scale(1); /* Pastikan gambar aktif tetap normal */
+}
+
+.C .Poster:hover .image-container {
+    transform: scale(1.1); /* Perbesar gambar aktif saat hover */
+    animation-play-state: paused; /* Menghentikan animasi saat hover */
+}
+
+.C .Poster .category-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    object-fit: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2; /* Pastikan teks di atas gambar */
+}
+
+.C .Poster:hover .category-text {
+    opacity: 1; /* Munculkan teks saat hover */
 }
 
 .C .Poster img {
     width: 100%; /* Setiap gambar menempati 1/3 lebar container */
     height: 100%;
     object-fit: cover; /* Gambar menutupi area tanpa distorsi */
+}
 
+.page2-poster {
+      width: 40%;
+    height: 150px;
+    text-align: center;
 }
