@@ -1,21 +1,57 @@
-html{
+html, body{
     padding: 0;
     margin: 0;
+    width: 100%;
+    height: 100%;
 }
-
-body{  background-color: aqua;
+body {
+    background-image: url("stars-1654074.jpg");
+    position: sticky;
 }
 
 .A{
+    font-family: Doto,sans-serif;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 25px;
+    margin: 25px;
     font-size: 35PX;
     font-weight: bolder;
     font-style: italic;
     width: 100%;
-    height: 50%;  
+    height: 50%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efek bayangan teks */
+}
+.box-header {
+    background-color: rgba(41, 0, 41, 0.85); /* Warna dengan transparansi */;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 0;
+    
+    /*Efek 3D */
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3), /* Bayangan bawah */
+        0 6px 20px rgba(0, 0, 0, 0.2), /* Bayang lebih luas */
+        inset 0 1px 0 rgba(255, 255, 255, 0.1), /* Highlight atas */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5); /* Shadow Bawah */
+
+    /*EFek transisi untuk interaktivitas */
+    transition: all 0.3s ease;
+}
+
+/* Efek hover untuk interaktivitas */
+.box-header:hover {
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+    background-color: rgba(41, 0, 41, 0.9);
 }
 
 .B {
@@ -34,8 +70,8 @@ body{  background-color: aqua;
 .B img {
     position: absolute;
     max-width: 100%; /* Gambar tidak melebihi lebar container */
-    max-height: 100%;/* Gambar tidak melebihi tinggi container */
-    object-fit: contain/* Pastikan gambar menutupi area tanpa distorsi */
+    max-height: 100%; /* Gambar tidak melebihi tinggi container */
+    object-fit: contain; /* Pastikan gambar menutupi area tanpa distorsi */
     transition: transform 1s ease-in-out;
     opacity: 0;
 }
@@ -64,6 +100,99 @@ body{  background-color: aqua;
     right: 10px;
 }
 
+/* Section Biodata Baru */
+.bio-container {
+    width: 100%;
+    padding: 40px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bio-card {
+    width: 80%;
+    max-width: 800px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.bio-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bio-header h2 {
+    color: #290029;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.bio-header p {
+    color: #666;
+    font-style: italic;
+}
+
+.bio-content {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+
+.bio-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bio-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #290029;
+}
+
+.bio-details {
+    flex: 2;
+}
+
+.bio-details h3 {
+    color: #290029;
+    margin-top: 0;
+    border-bottom: 2px solid #290029;
+    padding-bottom: 10px;
+}
+
+.bio-details p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #290029;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ff6b6b;
+    transform: translateY(-3px);
+}
+
 .C {
     width: 100%;
     height: 300px;
@@ -74,7 +203,7 @@ body{  background-color: aqua;
     
 }
 
-.C .Poster {
+.C a {
     border: 1px antiquewhite;
     width: 40%;
     height: 150px;
