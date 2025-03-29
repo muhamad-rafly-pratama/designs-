@@ -4,9 +4,18 @@ html, body{
     width: 100%;
     height: 100%;
 }
-body {
-    background-image: url("stars-1654074.jpg");
-    position: sticky;
+
+.body-background {
+    position: absolute;
+    z-index: -1;
+}
+
+.tengah {
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 80px;
 }
 
 .A{
@@ -55,16 +64,16 @@ body {
 }
 
 .B {
+    transform-origin: center center;
     position: relative;
     width: 100%;
     height: 50vh; /* Tinggi container relatif terhadap viewport */
     margin: 0 auto; /* Pusatkan container */
-    background-color: burlywood;
-    background-color: rgba(255, 255, 255, 0.5);
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px; /* Menambahkan perspektif untuk efek 3D */
 }
 
 .B img {
@@ -72,39 +81,39 @@ body {
     max-width: 100%; /* Gambar tidak melebihi lebar container */
     max-height: 100%; /* Gambar tidak melebihi tinggi container */
     object-fit: contain; /* Pastikan gambar menutupi area tanpa distorsi */
-    transition: transform 1s ease-in-out;
+    transition: all 0.5s ease-in-out; /* Ubah durasi transition */
     opacity: 0;
+    transform: scale(1.5) rotateY(30deg) translateZ(-200px); /* Perbesar scale awal */
+    transform-style: preserve-3d; /* Mempertahankan efek 3D */
+    filter: brightness(0.9);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25); /* Bayangan untuk kedalaman */
 }
 
 .B img.active {
     opacity: 1;
+    transform: scale(1) rotateY(0deg) translateZ(0); /* State akhir */
+    filter: brightness(1);
+    z-index: 1;
+    transition: none; /* Nonaktifkan transition untuk animasi */
+    animation: zoomIn3D 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.prev, .next {
-    position: absolute;
-    top: 50%;   
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px; 
-    cursor: pointer;
-    z-index: 10; /* Pastikan tombol di atas gambar */
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
+/* Animasi zoom-in khusus untuk gambar aktif */
+@keyframes zoomIn3D {
+    from {
+        transform: scale(0.1); /* Perbesar efek zoom awal */
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Section Biodata Baru */
 .bio-container {
     width: 100%;
     padding: 40px 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +122,7 @@ body {
 .bio-card {
     width: 80%;
     max-width: 800px;
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
@@ -121,6 +130,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    backdrop-filter: blur(12px); /* Efek glass blur */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Border transparan */
 }
 
 .bio-header {
@@ -129,13 +140,13 @@ body {
 }
 
 .bio-header h2 {
-    color: #290029;
+    color: wheat;
     font-size: 28px;
     margin-bottom: 10px;
 }
 
 .bio-header p {
-    color: #666;
+    color: white;
     font-style: italic;
 }
 
@@ -157,7 +168,7 @@ body {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #290029;
+    border: 5px solid wheat;
 }
 
 .bio-details {
@@ -165,15 +176,15 @@ body {
 }
 
 .bio-details h3 {
-    color: #290029;
+    color: whitesmoke;
     margin-top: 0;
-    border-bottom: 2px solid #290029;
+    border-bottom: 2px solid wheat;
     padding-bottom: 10px;
 }
 
 .bio-details p {
     line-height: 1.6;
-    color: #555;
+    color: white;
 }
 
 .social-links {
@@ -183,7 +194,7 @@ body {
 }
 
 .social-links a {
-    color: #290029;
+    color: white;
     font-size: 20px;
     transition: all 0.3s ease;
 }
