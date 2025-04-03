@@ -1,289 +1,297 @@
-html, body{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+:root {
+    --main-purple: #2A0944;
+    --neon-cyan: #00FFD1;
+    --electric-pink: #FF10F0;
 }
 
-.body-background {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: var(--main-purple);
+    color: white;
+    overflow-x: hidden;
+}
+
+.glow-nav {
+    background: linear-gradient(rgba(0,0,0,0.1), rgba (0,0,0,0));
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--electric-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(0,255,209,0.5);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neon-cyan);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+.container {
+    width: auto;
+    position: relative;
+    height: 100vh;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filler-1 {
+    font-size: 60px;
+    font-family: "Chivo Mono";
+    font-weight: bold;
+    margin-bottom: -50px;
+    background: linear-gradient(45deg, #ffffff, #ab3faf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(206, 255, 246, 0.199);
+}
+
+.filler-2 {
+    transform: translateX(-50px) translateY(30px);
+    font-family: "Noto Sans Canadian Aboriginal";
+    font-style: italic;
+    color: #c66bc9;
+    text-shadow: 0 0 30px rgba(206, 255, 246, 0.582);
+}
+
+.container-2 {
+    font-size: 145px;
+    font-family: "Chivo Mono";
+    font-weight: bolder;
+    word-spacing: -50px;
+    background: linear-gradient(45deg, #ffffff, #ab3faf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(206, 255, 246, 0.199);
+}
+
+.container-3 {
+    flex-direction: column;
+    align-items: flex-end;
+    display: flex;
+    transform: translateY(190px) translateX(-10px);
+    justify-content: flex-end;
+}
+
+.my-social-media {
+    transform: translateX(-60px) translateY(-15px);
+    font-family: "Noto Sans Canadian Aboriginal";
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(206, 255, 246, 0.582);
+}
+
+.bg-cover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100vh;
     z-index: -1;
 }
 
-.tengah {
-    color: aliceblue;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 80px;
+.bg-cover img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
 }
 
-.A{
-    font-family: Doto,sans-serif;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 25px;
-    font-size: 35PX;
-    font-weight: bolder;
-    font-style: italic;
-    width: 100%;
-    height: 50%;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efek bayangan teks */
+/* Animasi */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
 }
-.box-header {
-    background-color: rgba(41, 0, 41, 0.85); /* Warna dengan transparansi */;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    width: 100%;
-    margin: 0;
-    padding: 1.5rem 0;
+
+/* Responsive */
+@media (max-width: 768px) {
     
-    /*Efek 3D */
-    box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.3), /* Bayangan bawah */
-        0 6px 20px rgba(0, 0, 0, 0.2), /* Bayang lebih luas */
-        inset 0 1px 0 rgba(255, 255, 255, 0.1), /* Highlight atas */
-        inset 0 -1px 0 rgba(0, 0, 0, 0.5); /* Shadow Bawah */
+    .hero {
+        flex-direction: column;
+        padding-top: 100px;
+    }
 
-    /*EFek transisi untuk interaktivitas */
+    .hero-visual {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+    
+    .profile-container {
+        width: 300px;
+        height: 400px;
+    }
+    
+    .floating-text {
+        font-size: 20vw;
+    }
+}
+
+.cta-button {
+    padding: 1.2rem 3rem;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
     transition: all 0.3s ease;
+    box-shadow: 0 0 25px rgba(255,16,240,0.4);
 }
 
-/* Efek hover untuk interaktivitas */
-.box-header:hover {
-    box-shadow: 
-        0 6px 12px rgba(0, 0, 0, 0.4),
-        0 8px 24px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.6);
-    background-color: rgba(41, 0, 41, 0.9);
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255,16,240,0.6);
 }
 
-.B {
-    transform-origin: center center;
+.cyber-text-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cyber-glitch {
+    font-size: 5rem;
+    background: linear-gradient(45deg, 
+        var(--neon-cyan), 
+        var(--electric-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0,255,209,0.4);
     position: relative;
-    width: 100%;
-    height: 50vh; /* Tinggi container relatif terhadap viewport */
-    margin: 0 auto; /* Pusatkan container */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px; /* Menambahkan perspektif untuk efek 3D */
+    margin-bottom: 3rem;
+    animation: glitch 2s infinite;
 }
 
-.B img {
-    position: absolute;
-    max-width: 100%; /* Gambar tidak melebihi lebar container */
-    max-height: 100%; /* Gambar tidak melebihi tinggi container */
-    object-fit: contain; /* Pastikan gambar menutupi area tanpa distorsi */
-    transition: all 0.5s ease-in-out; /* Ubah durasi transition */
-    opacity: 0;
-    transform: scale(1.5) rotateY(30deg) translateZ(-200px); /* Perbesar scale awal */
-    transform-style: preserve-3d; /* Mempertahankan efek 3D */
-    filter: brightness(0.9);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25); /* Bayangan untuk kedalaman */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 5rem 5%;
 }
 
-.B img.active {
-    opacity: 1;
-    transform: scale(1) rotateY(0deg) translateZ(0); /* State akhir */
-    filter: brightness(1);
-    z-index: 1;
-    transition: none; /* Nonaktifkan transition untuk animasi */
-    animation: zoomIn3D 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Animasi zoom-in khusus untuk gambar aktif */
-@keyframes zoomIn3D {
-    from {
-        transform: scale(0.1); /* Perbesar efek zoom awal */
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Section Biodata Baru */
-.bio-container {
-    width: 100%;
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bio-card {
-    width: 80%;
-    max-width: 800px;
-    background: rgba(255, 255, 255, 0.1);
+.service-card {
+    background: rgba(255,255,255,0.05);
+    padding: 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    backdrop-filter: blur(12px); /* Efek glass blur */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Border transparan */
-}
-
-.bio-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.bio-header h2 {
-    color: wheat;
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.bio-header p {
-    color: white;
-    font-style: italic;
-}
-
-.bio-content {
-    display: flex;
-    width: 100%;
-    gap: 30px;
-}
-
-.bio-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bio-image img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid wheat;
-}
-
-.bio-details {
-    flex: 2;
-}
-
-.bio-details h3 {
-    color: whitesmoke;
-    margin-top: 0;
-    border-bottom: 2px solid wheat;
-    padding-bottom: 10px;
-}
-
-.bio-details p {
-    line-height: 1.6;
-    color: white;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-links a {
-    color: white;
-    font-size: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,255,209,0.2);
     transition: all 0.3s ease;
 }
 
-.social-links a:hover {
-    color: #ff6b6b;
-    transform: translateY(-3px);
+.service-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 30px rgba(0,255,209,0.2);
 }
 
-.C {
-    width: 100%;
-    height: 300px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    
+.service-title {
+    color: var(--neon-cyan);
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.C a {
-    border: 1px antiquewhite;
-    width: 40%;
-    height: 150px;
-    text-align: center;
+.welcome-section {
+    padding: 8rem 5%;
+    background: linear-gradient(45deg, 
+        rgba(42, 9, 68, 0.9), 
+        rgba(0, 0, 0, 0.95));
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.social-icons {
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    font-size: 2.5rem;
+    color: white;
+    transition: all 0.3s ease;
     position: relative;
 }
 
-.C .category-text {
-    transition: opacity 0.3s ease;
-    pointer-events: none; /* Agar tidak mengganggu hover */
+.social-icon:hover {
+    color: var(--electric-pink);
+    transform: translateY(-5px);
+    text-shadow: 0 0 15px rgba(255,16,240,0.5);
 }
 
-.C .Poster img.Poster-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    transform: scale(1); /* Status normal */
-}
+/* Responsive */
+@media (max-width: 768px) {
+    .cyber-glitch {
+        font-size: 3rem;
+    }
 
-.C .Poster img.poster-img.active {
-    opacity: 1;
-    transform: scale(1); /* Pastikan gambar aktif tetap normal */
-}
-
-.C .Poster:hover .image-container {
-    transform: scale(1.1); /* Perbesar gambar aktif saat hover */
-    animation-play-state: paused; /* Menghentikan animasi saat hover */
-}
-
-.C .Poster .category-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    object-fit: cover;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2; /* Pastikan teks di atas gambar */
-}
-
-.C .Poster:hover .category-text {
-    opacity: 1; /* Munculkan teks saat hover */
-}
-
-.C .Poster img {
-    width: 100%; /* Setiap gambar menempati 1/3 lebar container */
-    height: 100%;
-    object-fit: cover; /* Gambar menutupi area tanpa distorsi */
-}
-
-.page2-poster {
-      width: 40%;
-    height: 150px;
-    text-align: center;
+    .social-icon {
+        font-size: 2rem;
+    }
 }
