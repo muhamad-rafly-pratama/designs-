@@ -72,3 +72,34 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.B .prev').addEventListener('click', () => sectionB.prevImage());
     document.querySelector('.B .next').addEventListener('click', () => sectionB.nextImage());
 });
+
+// Tambahkan di script
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollElements = document.querySelectorAll('.fade-scroll');
+    let lastScrollY = window.scrollY;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const direction = window.scrollY > lastScrollY ? 'down' : 'up';
+            lastScrollY = window.scrollY;
+            
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                entry.target.classList.remove('hidden');
+            } else {
+                if(direction === 'down') {
+                    entry.target.classList.add('hidden');
+                }
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px'
+    });
+
+    scrollElements.forEach(el => {
+        observer.observe(el);
+        el.classList.add('hidden'); // Initial state
+    });
+});
